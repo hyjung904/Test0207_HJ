@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>프로젝트 회고: 배포 파이프라인 단순화</title>
+    <meta name="description" content="배포 파이프라인 단순화 회고 글" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Crimson+Pro:wght@400;600&display=swap");
+
+      :root {
+        --ink: #111111;
+        --muted: #4b4b4b;
+        --paper: #f6fbff;
+        --accent: #4aa3ff;
+        --accent-2: #9be7ff;
+        --card: #ffffff;
+        --shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        --radius: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: radial-gradient(1000px 600px at 10% 10%, #e6f2ff 0%, transparent 60%),
+          radial-gradient(900px 700px at 90% 20%, #d6f6ff 0%, transparent 55%),
+          var(--paper);
+        font-family: "Crimson Pro", serif;
+        line-height: 1.7;
+      }
+
+      .page {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 36px 20px 80px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: "Space Grotesk", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 28px;
+      }
+
+      .title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 36px;
+        line-height: 1.2;
+        margin: 0 0 12px;
+      }
+
+      .meta {
+        color: var(--muted);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 24px;
+        box-shadow: var(--shadow);
+        margin: 24px 0;
+      }
+
+      .card h3 {
+        margin-top: 0;
+        font-family: "Space Grotesk", sans-serif;
+      }
+
+      .callout {
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin: 20px 0;
+        color: var(--muted);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: var(--ink);
+        color: #fff;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="topbar">
+        <span>DevLog</span>
+        <span>2026.01.22</span>
+      </div>
+
+      <h1 class="title">프로젝트 회고: 배포 파이프라인 단순화</h1>
+      <div class="meta">작성자 Angela · CI/CD · Azure DevOps</div>
+
+      <div class="card">
+        <h3>요약</h3>
+        <p>
+          배포 단계를 절반 이하로 줄이면서도 안정성은 유지한 과정을 기록했다.
+          핵심은 "불필요한 검증을 제거"가 아니라 "검증 위치를 옮긴 것"이었다.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>문제</h3>
+        <p>
+          병렬로 돌아가던 빌드/테스트/배포가 매번 다른 속도로 완료되어, 배포 대기 시간이
+          길어지고 롤백이 어려워졌다. 작은 변경에도 전 구간이 새로 실행되는 구조였다.
+        </p>
+        <div class="callout">
+          목표: 릴리즈 준비 시간을 40% 이상 단축하고, 롤백 절차를 단순하게 만들 것.
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>해결</h3>
+        <p>
+          파이프라인을 3단계로 재구성했다. (1) 변경 감지, (2) 핵심 테스트, (3) 배포/검증.
+          특히 변경 감지 단계에서 패키지 단위 캐시를 도입해 재빌드 범위를 최소화했다.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>배운 점</h3>
+        <p>
+          단순화는 "삭제"가 아니라 "위치 조정"이다. 검증을 미루거나 제거하지 않고,
+          가장 합리적인 위치로 이동했더니 전체 흐름이 훨씬 명확해졌다.
+        </p>
+      </div>
+
+      <a class="back" href="index.html">← 블로그로 돌아가기</a>
+    </div>
+  </body>
+</html>

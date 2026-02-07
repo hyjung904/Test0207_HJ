@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Angela's Tech Notes</title>
+    <meta name="description" content="개인 테크 블로그 - 아이디어, 실험, 기록" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Crimson+Pro:wght@400;600&display=swap");
+
+      :root {
+        --ink: #111111;
+        --muted: #4b4b4b;
+        --paper: #f6fbff;
+        --accent: #4aa3ff;
+        --accent-2: #9be7ff;
+        --card: #ffffff;
+        --shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        --radius: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: radial-gradient(1000px 600px at 10% 10%, #e6f2ff 0%, transparent 60%),
+          radial-gradient(900px 700px at 90% 20%, #d6f6ff 0%, transparent 55%),
+          var(--paper);
+        font-family: "Crimson Pro", serif;
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 36px 20px 80px;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 16px 0 40px;
+      }
+
+      .logo {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        font-size: 22px;
+      }
+
+      nav {
+        display: flex;
+        gap: 18px;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        gap: 28px;
+        align-items: stretch;
+        margin-bottom: 36px;
+      }
+
+      .hero-card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 28px;
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-card::after {
+        content: "";
+        position: absolute;
+        inset: auto -40px -40px auto;
+        width: 160px;
+        height: 160px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        border-radius: 40px;
+        opacity: 0.2;
+        transform: rotate(15deg);
+      }
+
+      .hero-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 38px;
+        line-height: 1.2;
+        margin: 0 0 10px;
+      }
+
+      .hero-subtitle {
+        color: var(--muted);
+        margin: 0 0 20px;
+        font-size: 17px;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 18px;
+        border-radius: 999px;
+        background: var(--ink);
+        color: #fff;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 14px;
+      }
+
+      .hero-aside {
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: var(--radius);
+        padding: 22px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        display: grid;
+        gap: 16px;
+      }
+
+      .stat {
+        display: grid;
+        gap: 6px;
+      }
+
+      .stat strong {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 18px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        gap: 28px;
+      }
+
+      .post {
+        padding: 22px;
+        border-radius: var(--radius);
+        background: var(--card);
+        box-shadow: var(--shadow);
+        margin-bottom: 20px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .post-link {
+        display: block;
+        color: inherit;
+      }
+
+      .post-link .post {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .post-link:hover .post,
+      .post-link:focus-visible .post {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.16);
+      }
+
+      .post h3 {
+        margin: 0;
+        font-family: "Space Grotesk", sans-serif;
+      }
+
+      .post .meta {
+        color: var(--muted);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .post p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #d9f0ff;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 12px;
+      }
+
+      aside {
+        display: grid;
+        gap: 18px;
+      }
+
+      .card {
+        background: #ffffffcc;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 18px;
+        border-radius: var(--radius);
+      }
+
+      .card h4 {
+        margin: 0 0 10px;
+        font-family: "Space Grotesk", sans-serif;
+      }
+
+      footer {
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--muted);
+      }
+
+      @media (max-width: 900px) {
+        .hero,
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div class="logo">Angela's Tech Notes</div>
+        <nav>
+          <a href="#">글</a>
+          <a href="#">프로젝트</a>
+          <a href="#">아카이브</a>
+          <a href="#">소개</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <article class="hero-card">
+          <p class="tag">Focus: Cloud + Frontend</p>
+          <h1 class="hero-title">작고 빠르게 실험하는 테크 로그</h1>
+          <p class="hero-subtitle">
+            배운 것을 간단히 기록하고, 실패와 성공을 같이 남기는 개인 기술 노트입니다.
+          </p>
+          <a class="cta" href="#">최신 글 보러가기 →</a>
+        </article>
+        <div class="hero-aside">
+          <div class="stat">
+            <strong>24</strong>
+            <span>Posts this year</span>
+          </div>
+          <div class="stat">
+            <strong>7</strong>
+            <span>Mini projects</span>
+          </div>
+          <div class="stat">
+            <strong>3</strong>
+            <span>Cloud notes</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <main>
+          <article class="post">
+            <div class="meta">2026.02.07 · Azure</div>
+            <h3>Functions와 Storage 연결 정리</h3>
+            <p>핵심 설정만 모아두는 간단 체크리스트.</p>
+          </article>
+          <article class="post">
+            <div class="meta">2026.02.01 · Frontend</div>
+            <h3>디자인 토큰으로 작은 시스템 만들기</h3>
+            <p>CSS 변수를 이용해 톤과 리듬 맞추는 방법.</p>
+          </article>
+          <a
+            class="post-link"
+            href="post-deploy-pipeline.html"
+            target="_blank"
+            rel="noopener"
+          >
+            <article class="post">
+              <div class="meta">2026.01.22 · DevLog</div>
+              <h3>프로젝트 회고: 배포 파이프라인 단순화</h3>
+              <p>불필요한 스텝을 제거해 속도와 안정성을 올렸다.</p>
+            </article>
+          </a>
+        </main>
+        <aside>
+          <div class="card">
+            <h4>About</h4>
+            <p>작고 명확한 개선을 좋아합니다. 실험과 기록이 빠른 성장을 만든다고 믿어요.</p>
+          </div>
+          <div class="card">
+            <h4>Now</h4>
+            <p>Azure, TypeScript, 그리고 작은 디자인 시스템 실험 중.</p>
+          </div>
+          <div class="card">
+            <h4>Contact</h4>
+            <p>hello@example.com</p>
+          </div>
+        </aside>
+      </section>
+
+      <footer>
+        <span>© 2026 Angela Jung</span>
+        <span>Built with calm curiosity</span>
+      </footer>
+    </div>
+  </body>
+</html>
